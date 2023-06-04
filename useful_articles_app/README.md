@@ -4,6 +4,18 @@ Useful Articles client
 
 ## Getting Started
 
+### Init the project
+
+You need to get dependencies and generate the code:
+```
+cd useful_articles_app/
+flutter pub get
+flutter pub run build_runner build
+```
+
+
+## About Flutter
+
 This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:

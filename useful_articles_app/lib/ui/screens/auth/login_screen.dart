@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:useful_articles_app/state/app_state_provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -29,6 +31,9 @@ class _LoginPageState extends State<LoginPage> {
       String password = _passwordController.text;
       print('Username: $username');
       print('Password: $password');
+
+      final appStateProvider = Provider.of<AppStateProvider>(context, listen: false);
+      appStateProvider.newState("home");
     }
   }
 

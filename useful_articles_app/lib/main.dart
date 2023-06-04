@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:useful_articles_app/state/app_state_provider.dart';
 
 import 'ui/screens/auth/login_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AppStateProvider.init();
+  runApp(ChangeNotifierProvider<AppStateProvider>(
+    create: (_) => AppStateProvider(),
+    child: const UsefulArticlesApp(),
+  ));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class UsefulArticlesApp extends StatelessWidget {
+  const UsefulArticlesApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Useful Articles',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -26,7 +33,10 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const LoginPage(),
+      home: Consumer<AppStateProvider>(
+          builder: (context, appStateProvider, _) {
+            return appStateProvider.state().screen();
+          }),
     );
   }
 }
