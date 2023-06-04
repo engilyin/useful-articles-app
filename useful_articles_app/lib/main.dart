@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:useful_articles_app/state/app_state_provider.dart';
 
-import 'ui/screens/auth/login_screen.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppStateProvider.init();

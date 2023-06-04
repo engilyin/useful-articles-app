@@ -10,7 +10,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   final _formKey = GlobalKey<FormState>();
 
   TextEditingController _usernameController = TextEditingController();
@@ -32,8 +31,9 @@ class _LoginPageState extends State<LoginPage> {
       print('Username: $username');
       print('Password: $password');
 
-      final appStateProvider = Provider.of<AppStateProvider>(context, listen: false);
-      appStateProvider.newState("home");
+      final appStateProvider =
+          Provider.of<AppStateProvider>(context, listen: false);
+      appStateProvider.newState("busy");
     }
   }
 
@@ -102,7 +102,9 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(height: 16.0),
                   ElevatedButton(
                     onPressed: _submitForm,
-                    child: Text('Login'),
+                    child: const Text(
+                      'Login',
+                    ),
                   ),
                 ],
               ),

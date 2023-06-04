@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:useful_articles_app/ui/screens/auth/login_screen.dart';
 import 'package:useful_articles_app/ui/screens/home_screen.dart';
+import 'package:useful_articles_app/ui/screens/sys/busy_screen.dart';
 
 class AppState {
   final String id;
@@ -12,8 +13,8 @@ class AppState {
 }
 
 List<AppState> appStates = [
-  AppState('unknown', '', '', () => const CircularProgressIndicator()),
-  AppState('busy', '', '', () =>  const CircularProgressIndicator()),
+  AppState('unknown', '', '', () => const BusyScreen()),
+  AppState('busy', '', '', () =>  const BusyScreen()),
   AppState('login', '', '/login', () => const LoginPage()),
   AppState('home', '', '/', () => HomeScreen()),
 ];
