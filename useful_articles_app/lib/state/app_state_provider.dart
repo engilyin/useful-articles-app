@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:useful_articles_app/models/auth/login_response.dart';
 import 'package:useful_articles_app/state/app_states.dart';
 
 class AppStateProvider extends ChangeNotifier {
@@ -26,5 +27,10 @@ class AppStateProvider extends ChangeNotifier {
   static initialState() {
     String? token = _prefs.getString('token');
     return (token != null) ? states['home'] : states['login'];
+  }
+
+  void login(LoginResponse loginResponse) {
+
+    _prefs.setString('token', loginResponse.token);
   }
 }

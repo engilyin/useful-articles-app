@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 class GenericScreen extends StatelessWidget {
+  final _scaffold = GlobalKey();
 
   final Widget child;
 
@@ -11,6 +12,7 @@ class GenericScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffold,
       appBar: AppBar(
         title: Text('App Title'),
       ),

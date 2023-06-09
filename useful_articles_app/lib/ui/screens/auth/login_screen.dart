@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:useful_articles_app/commands/auth/login_command.dart';
+import 'package:useful_articles_app/models/auth/login_request.dart';
 import 'package:useful_articles_app/state/app_state_provider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -11,6 +13,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
+  final _scaffold = GlobalKey();
 
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
@@ -31,15 +34,16 @@ class _LoginPageState extends State<LoginPage> {
       print('Username: $username');
       print('Password: $password');
 
-      final appStateProvider =
-          Provider.of<AppStateProvider>(context, listen: false);
-      appStateProvider.newState("busy");
+      LoginCommand(
+              context, LoginRequest(username: username, password: password))
+          .run();
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffold,
       body: Stack(
         children: [
           // Background Image
