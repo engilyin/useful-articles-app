@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:useful_articles_app/exceptions/unauthorized_exception.dart';
 
 abstract class AbstractHttpCommand<T> extends AsyncCommand {
-  AbstractHttpCommand(super.context);
+  AbstractHttpCommand();
 
   String endpoint();
 
@@ -28,7 +28,7 @@ abstract class AbstractHttpCommand<T> extends AsyncCommand {
   Future<void> execCommand() async {
     var prefs = await SharedPreferences.getInstance();
 
-    var apiBase = prefs.getString('apiBase') ?? 'http://localhost:8080';
+    var apiBase = prefs.getString('apiBase') ?? 'http://192.168.0.55:8080';
 
     var endpointUrl = Uri.parse('$apiBase${endpoint()}');
 

@@ -1,23 +1,43 @@
 import 'package:useful_articles_app/commands/command.dart';
+import 'package:useful_articles_app/services/commands/current_command_service.dart';
+import 'package:useful_articles_app/services/locator.dart';
+import 'package:useful_articles_app/ui/router/app_router.dart';
 
 abstract class AsyncCommand extends Command {
-  AsyncCommand(super.context);
+
+  AppRouter? appRouter;
+  String? origScreen;
+
+  AsyncCommand() {
+    appRouter = locator<AppRouter>();
+    origScreen = appRouter!.current.path;
+  }
 
   @override
   void run() async {
-    var origState = currentStateId();
     try {
-      await changeState("busy");
-      await execCommand();
-      await changeState(nextState());
+      final currentCommandService = locator<CurrentCommandService>();
+      currentCommandService.start(complete);
+      await changeScreen('/busy');
     } catch (e) {
-      print(e);
-      await changeState(origState);
+      await changeScreen(origScreen!);
     }
   }
 
-  Future<void> changeState(String newState) async {
-    setState(newState);
+  complete() async {
+      final currentCommandService = locator<CurrentCommandService>();
+    try {
+      await execCommand();
+      currentCommandService.pushLastError(null);
+      await changeScreen(nextScreen());
+    } catch (e) {
+      currentCommandService.pushLastError(e.toString());
+      await changeScreen(origScreen!);
+    }
+  }
+
+  Future<void> changeScreen(String screen) async {
+    await appRouter!.replaceNamed<dynamic>(screen);
   }
 
   Future<void> execCommand();

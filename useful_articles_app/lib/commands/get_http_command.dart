@@ -3,7 +3,7 @@ import 'package:useful_articles_app/commands/abstract_http_command.dart';
 
 abstract class GetHttpCommand<T> extends AbstractHttpCommand {
 
-  GetHttpCommand(super.context);
+  GetHttpCommand();
 
   @override
   Future<http.Response> httpRequest(Uri endpointUrl) {

@@ -1,7 +1,29 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:useful_articles_app/services/commands/current_command_service.dart';
+import 'package:useful_articles_app/services/locator.dart';
 
-class BusyScreen extends StatelessWidget {
-  const BusyScreen({Key? key}) : super(key: key);
+@RoutePage()
+class BusyScreen extends StatefulWidget {
+
+  const BusyScreen({super.key});
+
+  @override
+  BusyScreenState createState() => BusyScreenState();
+}
+
+class BusyScreenState extends State<BusyScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+    startBackgroundOperation();
+  }
+
+  void startBackgroundOperation() async {
+    final currentCommandService = locator<CurrentCommandService>();
+    await currentCommandService.executeCurrent();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,16 +33,16 @@ class BusyScreen extends StatelessWidget {
       Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/login_bg.jpg"),
+            image: AssetImage("assets/images/login_bg.jpg"),
             fit: BoxFit.cover,
           ),
         ),
       ),
-      Positioned.fill(
+      const Positioned.fill(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
+          children: [
             // Spinning Wheel
             CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(Colors.white),

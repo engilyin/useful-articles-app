@@ -8,7 +8,7 @@ class LoginCommand extends PostHttpCommand {
 
   final LoginRequest loginRequest;
 
-  LoginCommand(super.context, this.loginRequest);
+  LoginCommand(this.loginRequest);
 
   @override
   String endpoint() {
@@ -24,13 +24,10 @@ class LoginCommand extends PostHttpCommand {
   void handleResponse(Map<String, dynamic> json) {
     var loginResponse = LoginResponse.fromJson(json);
 
-    final appStateProvider = Provider.of<AppStateProvider>(context, listen: false);
-
-    appStateProvider.login(loginResponse);
   }
 
   @override
-  String nextState() {
-    return "home";
+  String nextScreen() {
+    return "/home";
   }
 }

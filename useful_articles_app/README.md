@@ -10,7 +10,7 @@ You need to get dependencies and generate the code:
 ```
 cd useful_articles_app/
 flutter pub get
-flutter pub run build_runner build
+flutter packages pub run build_runner build --delete-conflicting-outputs
 ```
 
 

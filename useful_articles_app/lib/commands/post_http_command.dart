@@ -5,7 +5,7 @@ import 'package:useful_articles_app/commands/abstract_http_command.dart';
 
 abstract class PostHttpCommand<T> extends AbstractHttpCommand {
 
-  PostHttpCommand(super.context);
+  PostHttpCommand();
 
   Map<String, dynamic> body();
 
