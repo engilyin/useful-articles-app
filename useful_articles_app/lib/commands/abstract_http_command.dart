@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:useful_articles_app/commands/async_command.dart';
@@ -28,7 +29,7 @@ abstract class AbstractHttpCommand<T> extends AsyncCommand {
   Future<void> execCommand() async {
     var prefs = await SharedPreferences.getInstance();
 
-    var apiBase = prefs.getString('apiBase') ?? 'http://192.168.0.55:8080';
+    var apiBase = prefs.getString('apiBase') ?? dotenv.env['DEFAULT_API_URL'];
 
     var endpointUrl = Uri.parse('$apiBase${endpoint()}');
 

@@ -24,9 +24,10 @@ Since this project uses 1 locale add this to your info.plist
 </array>
 ```
 
-Generate the launcher icon (optional)
+Generate the launcher icon and splashes
 
 ```bash
 flutter pub get 
 flutter pub run flutter_launcher_icons:main
+flutter pub run flutter_native_splash:create
 ```

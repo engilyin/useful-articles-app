@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:useful_articles_app/localization/local_setup.dart';
@@ -11,6 +12,7 @@ import 'package:useful_articles_app/ui/themes.dart' as themes;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppStateProvider.init();
+  await dotenv.load(fileName: ".env");
   await initLocator();
   runApp(ChangeNotifierProvider<AppStateProvider>(
     create: (_) => AppStateProvider(),

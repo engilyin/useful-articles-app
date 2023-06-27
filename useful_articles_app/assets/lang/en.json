@@ -1,4 +1,7 @@
 {
-  "app-title": "Useful Article"
+  "app-title": "Useful Article",
+
+  "home": "Home",
+  "account": "Account"
 
 }
