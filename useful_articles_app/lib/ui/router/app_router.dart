@@ -9,7 +9,7 @@ import 'package:useful_articles_app/ui/screens/sys/startup_screen.dart';
 part 'app_router.gr.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen,Route')
-class AppRouter extends _$AppRouter {
+class AppRouter extends RootStackRouter {
   @override
   RouteType get defaultRouteType =>
       const RouteType.adaptive(); //.cupertino, .adaptive ..etc

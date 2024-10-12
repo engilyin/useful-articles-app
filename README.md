@@ -31,3 +31,16 @@ flutter pub get
 flutter pub run flutter_launcher_icons:main
 flutter pub run flutter_native_splash:create
 ```
+
+## Useful commands
+
+```bash
+#show the dependencies tree
+flutter pub deps -s tree
+
+#check the packages we can update
+flutter pub outdated  
+
+#upgrade flutter to the latest
+flutter upgrade 
+```
