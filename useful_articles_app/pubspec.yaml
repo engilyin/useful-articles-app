@@ -100,7 +100,6 @@ flutter:
 flutter_native_splash:
   image: assets/images/login_bg.jpg
   color: "#000000"
-  fill: true
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
